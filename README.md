@@ -1,4 +1,4 @@
-# SatisfactionClient
+# Satisfaction Client
 Projet fil rouge, cas pratique dans le cadre de la formation Data Engineer de l’organisme DataScientest.
 Ce projet concerne la préparation de données dans le cadre d’une étude de satisfaction client.
 Pour ce faire, nous utilisons de l’open source, plus précisément le site truspilot pour scrapper les données de commentaires des entreprises.
