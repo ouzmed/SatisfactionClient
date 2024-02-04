@@ -6,3 +6,24 @@ Au départ nous nous sommes partis sur le scrapping de toute catégorie d’entr
 Nous avons consommé ces données dans le cadre d’une analyse de sentiments via un score challengé avec d’autres.
 Nous avons utilisé une base de données SQL (MySQL) pour l’intégration des données overview et une base de données NOSQL (Elasticsearch) pour les commentaires, puis nous avons transformé ces deux sources de données en une seule base de donnée SQL, nommée 'supply_chain' 
 Cette base de données 'supply_chain' est consomée par la suite par notre API pour fournir aux utilisateurs des réponses dynamiques selon son choix
+# Composants de projet
+- Elasticsearch
+	- Création de 3 noeuds elasticsearch pour la partie NoSql du projet, index des commentaires ‘reviews_per_category_new’
+
+- MySQL & PHPMyAdmin 
+	- Création de la base de données SQL 'supply_chain', composée de deux tables (entreprise, analyse_sentiment)
+
+- Codes Python
+	- Scrapping des entreprises (données overview) de la catégorie electronic_technology
+		--> Création d'un fichier entreprise.csv
+	- Scrapping des commentaires de ces entreprises
+		--> Création d'un dossier 'json' contenant des fichiers de commentaires 
+	- Création et mapping de l'index ‘reviews_per_category_new’ dans elasticsearch en important les fichiers json des commentaires
+	- Réalisation du score d'analyse de sentiments NLTK sur les commentaires importés de elasticsearch
+		--> Création d'un fichier sentiment_analysis.csv contenant les scores 
+
+- FastAPi
+	- API qui pointe sur la base de données et qui retourne certaines réponses selon la demande de l'utilisateur : 
+		--> la liste des entreprises de la catégorie
+		--> nombre d'avis et d'étoiles par entreprise choisie
+		--> score moyen par entreprise
